@@ -1,26 +1,69 @@
+// Select Elements
 
-let usernameInput= document.getElementById("username");
+let form = document.querySelector("form");
+let loginButton = document.querySelector("button");
+
+let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
+
+let emailError = document.getElementById("email-error");
 let messageDiv = document.getElementById("error-message");
 
-console.log(usernameInput)
-let form = document.querySelector("form");
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
+// Constants
 
-        let usernameValue = usernameInput.value;
-        let passwordValue = passwordInput.value;
+let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let correctPassword = "1234";
 
-        let correctUsername = "admin";
-        let correctPassword = "1234";
-        if (usernameValue === correctUsername && passwordValue === correctPassword) {
-                messageDiv.textContent = "Login Successful";
-        }
-        else {
-                messageDiv.textContent = "Invalid Credentials";
+// Initial State
+
+loginButton.disabled = true;
+
+// Function to Check Inputs
+
+function checkInputs() {
+    let emailValue = emailInput.value;
+    let passwordValue = passwordInput.value;
+
+    if (emailPattern.test(emailValue) && passwordValue === correctPassword) {
+        loginButton.disabled = false;
+    } else {
+        loginButton.disabled = true;
+    }
 }
 
-            console.log(passwordValue);
-            console.log(usernameValue);
+// Email Validation
+
+emailInput.addEventListener("input", function () {
+    let emailValue = emailInput.value;
+
+    if (!emailPattern.test(emailValue)) {
+        emailError.textContent = "Invalid email format";
+    } else {
+        emailError.textContent = "";
+    }
+
+    checkInputs();  // check again whenever input changes
 });
 
+// Password Validation
+
+passwordInput.addEventListener("input", function () {
+    let passwordValue = passwordInput.value;
+
+    if (passwordValue === "") {
+        messageDiv.textContent = "Password cannot be empty";
+    } else {
+        messageDiv.textContent = "";
+    }
+
+    checkInputs(); // check again whenever input changes
+});
+
+// Form Submit
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let passwordValue = passwordInput.value;
+
+    console.log("Login Successful");
+});

@@ -8,11 +8,19 @@
 </head>
 <body>
     <div class="container">
+      <div class="login-box">
+    <form>
+    
+    </form>
+</div>
+
         <form>
             <h2>Login</h2>
-            <label>Username</label>
-            <input type="text" id="username">
-            <label>password</label>
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <div id="email-error" class="error-message"></div>
+
+            <label>Password</label>
             <input type="password" id="password">
             <button type="submit">Login</button>
             <div id="error-message"></div>
