@@ -1,5 +1,4 @@
 // Select Elements
-
 let form = document.querySelector("form");
 let loginButton = document.querySelector("button");
 
@@ -7,19 +6,16 @@ let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
 
 let emailError = document.getElementById("email-error");
-let messageDiv = document.getElementById("error-message");
+let passwordError = document.getElementById("password-error");
 
 // Constants
-
 let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let correctPassword = "1234";
 
 // Initial State
-
 loginButton.disabled = true;
 
 // Function to Check Inputs
-
 function checkInputs() {
     let emailValue = emailInput.value;
     let passwordValue = passwordInput.value;
@@ -32,7 +28,6 @@ function checkInputs() {
 }
 
 // Email Validation
-
 emailInput.addEventListener("input", function () {
     let emailValue = emailInput.value;
 
@@ -42,28 +37,25 @@ emailInput.addEventListener("input", function () {
         emailError.textContent = "";
     }
 
-    checkInputs();  // check again whenever input changes
+    checkInputs();
 });
 
 // Password Validation
-
 passwordInput.addEventListener("input", function () {
     let passwordValue = passwordInput.value;
 
     if (passwordValue === "") {
-        messageDiv.textContent = "Password cannot be empty";
+        passwordError.textContent = "Password cannot be empty";
     } else {
-        messageDiv.textContent = "";
+        passwordError.textContent = "";
     }
 
-    checkInputs(); // check again whenever input changes
+    checkInputs();
 });
 
 // Form Submit
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    let passwordValue = passwordInput.value;
-
-    console.log("Login Successful");
+    window.location.href = "success.html";
 });
